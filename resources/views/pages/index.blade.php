@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@push('kategori')
+    @include('layouts.category')
+@endpush
+
 @section('newsBerita')
 {{-- ini content --}}
 <div class="row" data-aos="fade-up">

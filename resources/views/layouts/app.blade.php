@@ -47,8 +47,7 @@
                         @yield('newsBerita')
 {{-- include kategori --}}
 <div class="row" data-aos="fade-up">
-    @include('layouts.category')
-
+    @stack('kategori')
     @yield('content')
 </div>
 {{-- end-include kategori --}}

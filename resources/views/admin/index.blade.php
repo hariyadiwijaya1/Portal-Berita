@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.dashboard.app')
 
 @section('header')
 <h1 class="m-0 text-dark">Dashboard</h1>

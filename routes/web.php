@@ -16,8 +16,9 @@ use App\Http\Controllers\BeritaController;
 
 Route::group([
     'middleware' => 'guest'
-], function() {
+], function () {
     Route::get('/', 'PostController@show')->name('home');
+    Route::get('/detail', 'PostController@detail');
     Route::get('/login', 'UserController@login');
     Route::post('/login', 'UserController@actionLogin')->name('Login');
 });
@@ -25,11 +26,10 @@ Route::group([
 
 Route::group([
     'middleware' => 'auth'
-], function() {
+], function () {
     Route::get('/home', 'UserController@dashboard');
     Route::get('/logout', 'UserController@logout');
     Route::get('/post', 'BeritaController@show');
     Route::get('/create', 'BeritaController@create');
+    Route::get('/categories', 'BeritaController@categories');
 });
-
-

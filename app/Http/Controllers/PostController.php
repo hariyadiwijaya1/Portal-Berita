@@ -10,4 +10,8 @@ class PostController extends Controller
     {
         return view('pages.index');
     }
+    public function detail()
+    {
+        return view('pages.post');
+    }
 }
