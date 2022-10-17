@@ -16,27 +16,28 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form>
+        <form method="get" action="{{ route('edit') }}">
+            @csrf
+            @method('PUT')
             <div class="card-body">
                 <div class="form-group">
                     <label for="title">Judul Berita</label>
-                    <input type="email" class="form-control" id="title" placeholder="Masukkan Judul"
-                        name="email">
+                    <input type="text" class="form-control" id="title" placeholder="Masukkan Judul" name="email" value="{{ $data->title }}">
                 </div>
                 <div class="form-grup">
                     <label for="summernote">Isi Berita</label>
-                    <textarea id="summernote" name="body"></textarea>
+                    <textarea id="summernote" name="body">{!! $data->body !!}</textarea>
                 </div>
                 <div class="form-group">
                     <label>Category</label>
-                    <select class="form-control select2" style="width: 100%;" name="category">
-                      <option selected="selected">Alabama</option>
-                      <option>Alaska</option>
-                      <option>California</option>
-                      <option>Delaware</option>
-                      <option>Tennessee</option>
-                      <option>Texas</option>
-                      <option>Washington</option>
+                    <select class="form-control select2" style="width: 100%;" name="id_category">
+                      <option selected="selected" value="1">Alabama</option>
+                      <option value="2">Alaska</option>
+                      <option value="3">California</option>
+                      <option value="4">Delaware</option>
+                      <option value="5">Tennessee</option>
+                      <option value="6">Texas</option>
+                      <option value="7">Washington</option>
                     </select>
                   </div>
                 <div class="form-group">

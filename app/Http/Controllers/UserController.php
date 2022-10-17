@@ -34,6 +34,7 @@ class UserController extends Controller
 
     public function dashboard()
     {
+        $user = Auth::User()->id;
         return view('admin.index');
     }
 
@@ -43,27 +44,23 @@ class UserController extends Controller
         return redirect('/');
     }
 
-    public function hh()
+    public function edit()
     {
-        return view('admin.update');
+        return view('admin.profile.show');
     }
-
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $user = User::find(Auth::user()->id);
 
-        $idUser = $user;
-
-        DB::table('users')->where('id',$idUser)->update([
-            'email'     => $request->input('email'),
-            'password'  => bcrypt($request->input('password')),
+        DB::table('users')->where('id',$id)->update([
+            'email'     => $request->email,
+            'password'  => $request->password,
+            'role'      => $request->role,
         ]);
 
-        DB::table('user_details')->where('id', $idUser->id)->update([
-            'nama'      => $request->nama,
-            'status'    => $request->alamat,
-             $user->save(),
-        ]);
+        // DB::table('user_details')->where('id', $id)->update([
+        //     'nama'      => $request->nama,
+        //     'status'    => $request->alamat
+        // ]);
 
         return redirect('/home')->with('msg', 'Berhasil mengubah Biodata.');
     }

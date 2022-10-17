@@ -11,7 +11,7 @@
                 <div class="col-12">
                   <div class="card">
                     <div class="card-header">
-                        <a href="/create" class="btn btn-primary card-title">Tambah Data</a>
+                        <a href="/post/create" class="btn btn-primary card-title">Tambah Data</a>
                     </div>
                     <!-- ./card-header -->
                     <div class="card-body">
@@ -31,11 +31,15 @@
                             <td>{{ $item->title }}</td>
                             {{-- <td>{{ $item->author }}</td> --}}
                             <td>{{ $item->created_at }}</td>
-                            <td>{{ $item->body }}</td>
+                            <td>{!! $item->body !!}</td>
                             <td>
                               <div class="d-flex align-items-center">
-                                <a href="" class="btn btn-info btn-xs">Info</a>
-                                <a href="" class="btn btn-danger btn-xs">Delete</a>
+                                <a href="/post/update/{{ $item->id }}" class="btn btn-info btn-xs">Edit</a>
+                                <form action="{{route('delete', $item->id)}}" method="delete">
+                                    @csrf
+                                    @method('delete')
+                                    <a href="/post/post/{{$item->id}}" class="btn btn-danger btn-xs">Delete</a>
+                                </form>
                               </div>
                             </td>
                           </tr>

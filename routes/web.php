@@ -27,9 +27,8 @@ Route::group([
 Route::group([
     'middleware' => 'auth'
 ], function () {
+    require_once('includes/post.php');
+    require_once('includes/profile.php');
     Route::get('/home', 'UserController@dashboard');
-    Route::get('/logout', 'UserController@logout');
-    Route::get('/post', 'BeritaController@show');
-    Route::get('/create', 'BeritaController@create');
-    Route::get('/categories', 'BeritaController@categories');
+    Route::get('/categories', 'CategoryController@show');
 });

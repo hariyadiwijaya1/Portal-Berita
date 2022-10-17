@@ -9,7 +9,7 @@
             <div class="navbar-bottom">
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
-                        <a class="navbar-brand" href="#"><img src="assets/images/logo.svg" alt="" /></a>
+                        <a class="navbar-brand text-white" href="#"><img src="assets/images/pancasila.png" alt="" style="width: 15%" >INDONESIA</a>
                     </div>
                     <div>
                         <button class="navbar-toggler" type="button" data-target="#navbarSupportedContent"
@@ -27,7 +27,7 @@
                                     <a class="nav-link" href="index.html">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="pages/magazine.html">MAGAZINE</a>
+                                    <a class="nav-link" href="pages/magazine.html">ISLAM</a>
                                 </li>
                                 {{-- <li class="nav-item">
                                     <a class="nav-link" href="pages/business.html">Business</a>
@@ -36,13 +36,16 @@
                                     <a class="nav-link" href="pages/sports.html">Sports</a>
                                 </li> --}}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="pages/art.html">Art</a>
+                                    <a class="nav-link" href="pages/art.html">HINDU</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="pages/politics.html">POLITICS</a>
+                                    <a class="nav-link" href="pages/politics.html">BUDHA</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="pages/travel.html">Travel</a>
+                                    <a class="nav-link" href="pages/travel.html">KRISTEN</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="pages/travel.html">KHONGHUCU</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="pages/contactus.html">Contact</a>

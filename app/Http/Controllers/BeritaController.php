@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\berita;
 use Exception;
+use App\berita;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class BeritaController extends Controller
 {
@@ -34,15 +36,19 @@ class BeritaController extends Controller
     public function store(Request $request)
     {
         try {
+
+
+            $slug = SlugService::createSlug(Berita::class, 'slug', $request->title);
+
             DB::transaction(function () use ($request) {
                 DB::table('posts')->insert([
                     'created_at' => date('Y-m-d H:i:s'),
                     'title' => $request->title,
-                    'slug' => $request->slug,
+                    'slug' => $this->slug,
                     'body' => $request->body,
-                    'image' => $request->image,
+                    'image' => '$request->image',
                     'id_category' => $request->id_category,
-                    'id_user' => $request->id_user,
+                    'id_user' => Auth::User()->id,
                 ]);
             });
 
@@ -78,29 +84,25 @@ class BeritaController extends Controller
     }
 
     //update
-    public function update(Request $request, $id)
+    public function edit($id)
     {
-        if ($request->name == NULL) {
-            $json = [
-                'msg'       => 'Mohon masukan nama produk',
-                'status'    => false
-            ];
-        } elseif ($request->price == NULL) {
-            $json = [
-                'msg'       => 'Mohon masukan harga produk',
-                'status'    => false
-            ];
-        } else {
+        $data = DB::table('posts')->find($id);
+        return view('admin.post.edit', compact('data'));
+    }
+
+    public function update(Request $request)
+    {
+
             try {
-                DB::transaction(function () use ($request, $id) {
-                    DB::table('posts')->where('id', $id)->update([
+                DB::transaction(function () use ($request) {
+                    DB::table('posts')->where('id',)->update([
                         'created_at' => date('Y-m-d H:i:s'),
                         'title' => $request->title,
-                        'slug' => $request->slug,
+                        'slug' => '$request->slug',
                         'body' => $request->body,
-                        'image' => $request->image,
+                        'image' => '$request->image',
                         'id_category' => $request->id_category,
-                        'id_user' => $request->id_user,
+                        'id_user' => Auth::User()->id,
                     ]);
                 });
 
@@ -115,7 +117,6 @@ class BeritaController extends Controller
                     'e'         => $e
                 ];
             }
-        }
 
         return Response::json($json);
     }

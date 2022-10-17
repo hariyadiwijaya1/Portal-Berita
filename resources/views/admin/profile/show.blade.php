@@ -8,13 +8,13 @@
 <div class="card">
     <div class="card-header p-2">
         <ul class="nav nav-pills">
-            <li class="nav-item"><a class="nav-link active" href="#profile" data-toggle="tab">profile</a></li>
-            <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
+            <li class="nav-item"><a class="nav-link active" data-toggle="tab" onclick="settings()">profile</a></li>
+            <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab" onclick="activity()">Settings</a></li>
         </ul>
     </div><!-- /.card-header -->
     <div class="card-body">
         <div class="tab-content">
-            <div class="active tab-pane" id="activity">
+            <div class="tab-pane" id="activity">
                 <div class="tab-pane" id="profile">
                     <div class="card card-primary card-outline">
                         <div class="card-body box-profile form-horizontal">
@@ -24,40 +24,37 @@
                             </div>
                             <h3 class="profile-username text-center">Nina Mcintire</h3>
                             <p class="text-muted text-center">Software Engineer</p>
-                            <ul class="list-group list-group-unbordered mb-3">
-                                <li class="list-group-item">
-                                    <b>Followers</b> <a class="float-right">1,322</a>
-                                </li>
-                                <li class="list-group-item">
-                                    <b>Following</b> <a class="float-right">543</a>
-                                </li>
-                                <li class="list-group-item">
-                                    <b>Friends</b> <a class="float-right">13,287</a>
-                                </li>
-                            </ul>
-                            <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="tab-pane" id="settings">
-                <form class="form-horizontal">
+                <form class="form-horizontal" method="GET" action="{{ route('update', Auth::User()->id )}}">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" name="id" value="{{ Auth::User()->id }}">
                     <div class="form-group row">
                         <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                         <div class="col-sm-10">
-                            <input type="email" class="form-control" id="inputName" placeholder="Name">
+                            <input type="text" class="form-control" id="inputName" placeholder="Name" name="nama">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-10">
-                            <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                            <input type="email" class="form-control" id="inputEmail" placeholder="Email" name="email">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">password</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputName2" placeholder="Name">
+                            <input type="password" class="form-control" id="inputName2" name="password">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputName2" class="col-sm-2 col-form-label">confirm password</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="inputName2" name="role">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -70,4 +67,8 @@
         </div>
     </div>
 </div>
+
+@push('script')
+@include('components.profile')
+@endpush
     @endsection

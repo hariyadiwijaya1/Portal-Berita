@@ -10,7 +10,7 @@ class PostController extends Controller
     {
         return view('pages.index');
     }
-    public function detail()
+    public function create()
     {
         return view('pages.post');
     }
