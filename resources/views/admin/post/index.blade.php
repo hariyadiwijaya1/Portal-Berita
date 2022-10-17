@@ -32,10 +32,10 @@
                           <tr data-widget="expandable-table" aria-expanded="false">
                             <td>{{ $no++ }}</td>
                             <td>{{ $item->title }}</td>
-                            <td>{{ $item->created_at }}</td>
+                            <td>{{ waktu($item->created_at) }}</td>
                             <td>
                               <div class="d-flex align-items-center">
-                                <a href="/post/update/{{ $item->id }}" class="btn btn-info btn-xs">Edit</a>
+                                <a href="/post/edit/{{ $item->id }}" class="btn btn-info btn-xs">Edit</a>
                                 <form action="{{route('delete', $item->id)}}" method="delete">
                                     @csrf
                                     @method('delete')

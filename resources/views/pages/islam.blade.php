@@ -24,10 +24,10 @@
                                 </div>
                                 <div class="col-sm-8 grid-margin">
                                     <h2 class="font-weight-600 mb-2">
-                                        {{ $item->title }}
+                                        <a href="/page/{{ $item->slug }}" class="text-dark">{{ $item->title }}</a>
                                     </h2>
                                     <p class="fs-13 text-muted mb-0">
-                                        <span class="mr-2">Photo </span>10 Minutes ago
+                                        <span class="mr-2">Photo </span>{{ waktu($item->created_at) }}
                                     </p>
                                     <p class="fs-15">
                                         {!!Illuminate\Support\Str::limit($item->body, 150, $end='...') !!}
@@ -50,7 +50,7 @@
                                                     {!!Illuminate\Support\Str::limit($item->body, 45, $end='...') !!}
                                                 </h5>
                                                 <p class="fs-13 text-muted mb-0">
-                                                    <span class="mr-2">Photo </span>10 Minutes ago
+                                                    <span class="mr-2">Photo </span>{{ waktu($item->created_at) }}
                                                 </p>
                                             </div>
                                             <div class="col-sm-4">

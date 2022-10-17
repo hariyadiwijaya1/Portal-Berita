@@ -16,7 +16,8 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form method="GET" action="{{route('store')}}">
+        <form method="POST" action="{{route('store')}}" enctype="multipart/form-data">
+            @csrf
             <div class="card-body">
                 <div class="form-group">
                     <label for="title">Judul Berita</label>
@@ -29,20 +30,15 @@
                 <div class="form-group">
                     <label>Category</label>
                     <select class="form-control select2" style="width: 100%;" name="id_category">
-                        <option selected disabled >Pilih Kategori</option>
-                    @foreach ($data as $item)
+                        <option selected disabled>Pilih Kategori</option>
+                        @foreach ($data as $item)
                         <option value="{{ $item->id }}">{{ $item->nama }}</option>
-                    @endforeach
+                        @endforeach
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputFile">Gambar</label>
-                    <div class="input-group">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="exampleInputFile" name="image">
-                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                        </div>
-                    </div>
+                    <input type="file" class="dropify" data-allowed-file-extensions="pdf png jpg" name="image">
                 </div>
 
                 <!-- /.card-body -->

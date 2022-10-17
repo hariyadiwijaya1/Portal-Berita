@@ -13,14 +13,14 @@
             <img src="{{asset('assets/images/'. $beritaTrending->image )}}" alt="banner" class="img-fluid">
             <div class="banner-content">
                 <div class="badge badge-danger fs-12 font-weight-bold mb-3">
-                    global news
+                    newest
                 </div>
-                <h1 class="mb-0">{{ $beritaTrending->title }}</h1>
+                <h1 class="mb-0"><a href="/page/{{ $beritaTrending->slug }}" class="text-white"> {{ $beritaTrending->title }}</a></h1>
                 <h1 class="mb-2">
                     {!!Illuminate\Support\Str::limit($beritaTrending->body, 50, $end='...') !!}
                 </h1>
                 <div class="fs-12">
-                    <span class="mr-2">Photo </span>10 Minutes ago
+                    <span class="mr-2">Photo </span>{{ waktu($beritaTrending->created_at) }}
                 </div>
             </div>
         </div>
@@ -32,9 +32,10 @@
                 @foreach ($beritaNews as $item)
                 <div class="d-flex border-bottom-blue pt-3 pb-4 align-items-center justify-content-between">
                     <div class="pr-3">
-                        <h5>{{ $item->title }}</h5>
+                        {{-- <a href="/page/{{ $item->slug }}" class="text-dark">{{ $item->title }}</a> --}}
+                        <h5 class="mb-0"><a href="/page/{{ $item->slug }}" class="text-white"> {{ $item->title }}</a></h5>
                         <div class="fs-12">
-                            <span class="mr-2">Photo </span>10 Minutes ago
+                            <span class="mr-2">Photo </span>{{ waktu($item->created_at) }}
                         </div>
                     </div>
                     <div class="rotate-img">
@@ -67,10 +68,10 @@
                 </div>
                 <div class="col-sm-8  grid-margin">
                     <h2 class="mb-2 font-weight-600">
-                        <a href="/page/{{ $item->slug }}">{{ $item->title }} </a>
+                        <a href="/page/{{ $item->slug }}" class="text-">{{ $item->title }} </a>
                     </h2>
                     <div class="fs-13 mb-2">
-                        <span class="mr-2">Photo </span>10 Minutes ago
+                        <span class="mr-2">Photo </span>{{ waktu($item->created_at) }}
                     </div>
                     <p class="mb-0">
                         {!!Illuminate\Support\Str::limit($item->body, 50, $end='...') !!}
@@ -78,11 +79,7 @@
                 </div>
             </div>
             @endforeach
-            <div class="row">
-                <div class="col-3 d-flex">
-                    {{ $berita->links() }}
-                </div>
-            </div>
+                    {!! $berita->onEachSide(2)->links() !!}
         </div>
     </div>
 </div>

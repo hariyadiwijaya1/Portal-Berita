@@ -8,6 +8,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 
 class Post extends Model
 {
+    // protected $guarded = [];
 
     public function sluggable(): array
     {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Exception;
 use App\Berita;
+use App\Post;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -35,22 +36,25 @@ class BeritaController extends Controller
         return view('admin.post.create', compact('data'));
     }
 
-    //create
     public function store(Request $request)
     {
         try {
 
+            $image = $request->file('image');
+            $destinationPath = 'assets/images/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+
 
             $slug = Str::slug($request->title, '-');
-
-
-            DB::transaction(function () use ($request, $slug) {
+            DB::transaction(function () use ($request, $slug, $profileImage) {
                 DB::table('posts')->insert([
                     'created_at' => date('Y-m-d H:i:s'),
                     'title' => $request->title,
                     'slug' => $slug,
                     'body' => $request->body,
-                    'image' => '$request->image',
+                    'image' => $profileImage,
                     'id_category' => $request->id_category,
                     'id_user' => Auth::User()->id,
                 ]);
@@ -62,15 +66,9 @@ class BeritaController extends Controller
         return redirect('post');
     }
 
-    //read by id atau search
     public function show()
     {
-        //    if(is_numeric($id)) {
-        //        $data = DB::table('posts')->where('id', $id)->first();
-        //        return Response::json($data);
-        //    }
-        $data =
-            DB::table('posts')
+        $data = DB::table('posts')
             ->join('categories', 'categories.id', '=', 'posts.id_category')
             ->select('posts.*', 'categories.nama as category')
             ->orderBy('posts.id', 'desc')->get();
@@ -82,38 +80,39 @@ class BeritaController extends Controller
     public function edit($id)
     {
         $data = DB::table('posts')->find($id);
-        return view('admin.post.edit', compact('data'));
+        $category =  DB::table('categories')->get();
+
+
+        return view('admin.post.edit', compact('data', 'category'));
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-
         try {
-            DB::transaction(function () use ($request) {
-                DB::table('posts')->where('id',)->update([
-                    'created_at' => date('Y-m-d H:i:s'),
+
+            $image = $request->file('image');
+            $destinationPath = 'assets/images/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+
+            $slug = Str::slug($request->title, '-');
+
+            DB::transaction(function () use ($request, $id, $slug, $profileImage) {
+                DB::table('posts')->where('id', $id)->update([
                     'title' => $request->title,
-                    'slug' => '$request->slug',
+                    'slug' => $slug,
+                    'image' => $profileImage,
                     'body' => $request->body,
-                    'image' => '$request->image',
                     'id_category' => $request->id_category,
                     'id_user' => Auth::User()->id,
                 ]);
             });
-
-            $json = [
-                'msg' => 'Produk berhasil disunting',
-                'status' => true
-            ];
         } catch (Exception $e) {
-            $json = [
-                'msg'       => 'error',
-                'status'    => false,
-                'e'         => $e
-            ];
+            return 'data error';
         }
 
-        return Response::json($json);
+        return redirect('post');
     }
 
     //delete
@@ -135,6 +134,6 @@ class BeritaController extends Controller
             ];
         }
 
-        return response()->json($json);
+        return redirect('post');
     }
 }

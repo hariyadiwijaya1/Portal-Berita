@@ -16,13 +16,14 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form method="get" action="{{ route('edit') }}">
+        <form method="POST" action="/post/update/{{ $data->id }}" enctype="multipart/form-data">
             @csrf
-            @method('PUT')
+            <input type = "hidden" name = "_token" value = "{{ csrf_token() }}">
             <div class="card-body">
+                <input type="hidden" name="id" value="{{ $data->slug }}">
                 <div class="form-group">
                     <label for="title">Judul Berita</label>
-                    <input type="text" class="form-control" id="title" placeholder="Masukkan Judul" name="email" value="{{ $data->title }}">
+                    <input type="text" class="form-control" id="title" placeholder="Masukkan Judul" name="title" value="{{ $data->title }}">
                 </div>
                 <div class="form-grup">
                     <label for="summernote">Isi Berita</label>
@@ -31,23 +32,18 @@
                 <div class="form-group">
                     <label>Category</label>
                     <select class="form-control select2" style="width: 100%;" name="id_category">
-                      <option selected="selected" value="1">Alabama</option>
-                      <option value="2">Alaska</option>
-                      <option value="3">California</option>
-                      <option value="4">Delaware</option>
-                      <option value="5">Tennessee</option>
-                      <option value="6">Texas</option>
-                      <option value="7">Washington</option>
+                        @foreach ($category as $item)
+                            @if ($data->id_category == $item->id)
+                            <option value="{{ $item->id }}" selected>{{ $item->nama }}</option>
+                                @else
+                                <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                            @endif
+                        @endforeach
                     </select>
-                  </div>
+                </div>
                 <div class="form-group">
                     <label for="exampleInputFile">Gambar</label>
-                    <div class="input-group">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="exampleInputFile" name="image">
-                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                        </div>
-                    </div>
+                    <input type="file" class="dropify" data-allowed-file-extensions="pdf png jpg" name="image" data-default-file="{{ asset('assets/images/'. $data->image ) }}">
                 </div>
 
                 <!-- /.card-body -->

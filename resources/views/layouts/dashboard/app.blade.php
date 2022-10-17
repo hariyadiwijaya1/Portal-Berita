@@ -31,6 +31,9 @@
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/summernote/summernote-bs4.min.css') }}">
 
+  <link rel="stylesheet" href="{{ asset('dist/css/dropify.css') }}">
+
+
     @stack('style')
 </head>
 
@@ -127,8 +130,8 @@
     <script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- ChartJS -->
     <script src="{{ asset('adminlte/plugins/chart.js/Chart.min.js') }}"></script>
-    <!-- Sparkline -->
-    <script src="{{ asset('adminlte/plugins/sparklines/sparkline.js') }}"></script>
+    {{-- <!-- Sparkline -->
+    <script src="{{ asset('adminlte/plugins/sparklines/sparkline.js') }}"></script> --}}
     <!-- JQVMap -->
     <script src="{{ asset('adminlte/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
     <script src="{{ asset('adminlte/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
@@ -150,6 +153,12 @@
     <script src="{{ asset('adminlte/dist/js/demo.js') }}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{ asset('adminlte/dist/js/pages/dashboard.js') }}"></script>
+
+<script src="{{ asset('dist/js/dropify.js') }}"></script>
+
+<script>
+    $('.dropify').dropify();
+</script>
 
     @stack('script')
 </body>
