@@ -24,10 +24,10 @@
                                     </button>
                                 </li>
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="index.html">Home</a>
+                                    <a class="nav-link" href="/">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="pages/magazine.html">ISLAM</a>
+                                    <a class="nav-link" href="/islam">ISLAM</a>
                                 </li>
                                 {{-- <li class="nav-item">
                                     <a class="nav-link" href="pages/business.html">Business</a>
@@ -36,19 +36,16 @@
                                     <a class="nav-link" href="pages/sports.html">Sports</a>
                                 </li> --}}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="pages/art.html">HINDU</a>
+                                    <a class="nav-link" href="/hindu">HINDU</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="pages/politics.html">BUDHA</a>
+                                    <a class="nav-link" href="/budha">BUDHA</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="pages/travel.html">KRISTEN</a>
+                                    <a class="nav-link" href="/kristen">KRISTEN</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="pages/travel.html">KHONGHUCU</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="pages/contactus.html">Contact</a>
+                                    <a class="nav-link" href="/khonghucu">KHONGHUCU</a>
                                 </li>
                             </ul>
                         </div>

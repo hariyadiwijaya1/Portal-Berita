@@ -15,11 +15,11 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-$faker = \Faker\Factory::create();
+        $faker = \Faker\Factory::create();
 
         for ($i = 0; $i < 10; $i++) {
             $user = User::create([
-                'role' =>$faker->randomDigit,
+                'role' => $faker->randomDigit,
                 'email' => $faker->unique()->safeEmail,
                 'password' => Hash::make('password'),
             ]);
@@ -27,7 +27,7 @@ $faker = \Faker\Factory::create();
             UserDetail::create([
                 'user_id' => $user->id,
                 'nama' => $faker->name,
-                'status' => $faker->word,
+                'status' => 'coba',
             ]);
         }
     }

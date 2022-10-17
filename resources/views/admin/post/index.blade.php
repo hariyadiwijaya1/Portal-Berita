@@ -20,18 +20,19 @@
                           <tr>
                             <th>#</th>
                             <th>Title</th>
-                            {{-- <th>Author</th> --}}
                             <th>Tanggal Buat</th>
                             <th>Action</th>
                           </tr>
                         </thead>
                         <tbody>
+                            @php
+                                $no = 1;
+                            @endphp
                           @foreach ($data as $item)
                           <tr data-widget="expandable-table" aria-expanded="false">
+                            <td>{{ $no++ }}</td>
                             <td>{{ $item->title }}</td>
-                            {{-- <td>{{ $item->author }}</td> --}}
                             <td>{{ $item->created_at }}</td>
-                            <td>{!! $item->body !!}</td>
                             <td>
                               <div class="d-flex align-items-center">
                                 <a href="/post/update/{{ $item->id }}" class="btn btn-info btn-xs">Edit</a>
@@ -42,6 +43,13 @@
                                 </form>
                               </div>
                             </td>
+                            <tr class="expandable-body">
+                                <td colspan="4">
+                                  <p>
+                                    {!! $item->body !!}
+                                  </p>
+                                </td>
+                              </tr>
                           </tr>
                           @endforeach
                         </tbody>

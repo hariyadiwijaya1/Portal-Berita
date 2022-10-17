@@ -17,6 +17,8 @@ use App\Http\Controllers\BeritaController;
 Route::group([
     'middleware' => 'guest'
 ], function () {
+    require_once('includes/pages.php');
+    require_once('includes/show.php');
     Route::get('/', 'PostController@show')->name('home');
     Route::get('/detail', 'PostController@detail');
     Route::get('/login', 'UserController@login');

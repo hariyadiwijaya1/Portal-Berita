@@ -20,13 +20,7 @@
             <div class="card-body">
                 <div class="form-group">
                     <label for="title">Judul Berita</label>
-                    <input type="text" class="form-control" id="title" placeholder="Masukkan Judul"
-                        name="title">
-                </div>
-                <div class="form-group">
-                    <label for="title">slug</label>
-                    <input type="text" class="form-control" id="title" placeholder="Masukkan Judul"
-                        name="slug">
+                    <input type="text" class="form-control" id="title" placeholder="Masukkan Judul" name="title">
                 </div>
                 <div class="form-grup">
                     <label for="summernote">Isi Berita</label>
@@ -35,11 +29,12 @@
                 <div class="form-group">
                     <label>Category</label>
                     <select class="form-control select2" style="width: 100%;" name="id_category">
-                      <option selected="selected" value="1">Alabama</option>
-                      <option value="2">Alaska</option>
-                      <option value="3">California</option>
+                        <option selected disabled >Pilih Kategori</option>
+                    @foreach ($data as $item)
+                        <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                    @endforeach
                     </select>
-                  </div>
+                </div>
                 <div class="form-group">
                     <label for="exampleInputFile">Gambar</label>
                     <div class="input-group">

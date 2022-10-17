@@ -5,9 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 
-class Berita extends Model
+
+class Post extends Model
 {
-    use Sluggable;
 
     public function sluggable(): array
     {
@@ -16,5 +16,10 @@ class Berita extends Model
                 'source' => 'title'
             ]
         ];
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }
