@@ -10,8 +10,10 @@ class PagesController extends Controller
     public function slug($slug)
     {
         $id = DB::table('posts')->where('slug', $slug)->first();
+        $beritaNews = DB::table('posts')->offset(1)->limit(5)->get();
 
-        return view('pages.pages', compact('id'));
+
+        return view('pages.pages', compact('id', 'beritaNews'));
     }
 
     public function islam()

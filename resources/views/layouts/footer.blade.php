@@ -28,6 +28,7 @@
                 </div>
                 <div class="col-sm-4">
                     <h3 class="font-weight-bold mb-3">RECENT POSTS</h3>
+
                     @foreach ($beritaNews as $item)
 
                     <div class="row">

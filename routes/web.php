@@ -14,6 +14,8 @@ use App\Http\Controllers\BeritaController;
 |
 */
 
+Route::get('/guzzle', 'CategoryController@guzzle');
+
 Route::group([
     'middleware' => 'guest'
 ], function () {
